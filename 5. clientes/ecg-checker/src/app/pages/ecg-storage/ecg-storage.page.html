@@ -1,0 +1,26 @@
+<!--<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>ecg-storage</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<app-app-header>ECG storage</app-app-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">ecg-storage</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-list>
+    <ion-item *ngFor="let trace of ecgTraces">
+      <ion-label>Precargado: {{ trace.fecha_creacion }}</ion-label>
+      <ion-button (click)="openECGDetail(trace)">Abrir</ion-button>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="!ecgTraces.length">
+    <p>No hay trazos de ECG disponibles.</p>
+    <ion-button (click)="generateECGTraces()">Generar trazos de ECG</ion-button>
+  </div>
+</ion-content>

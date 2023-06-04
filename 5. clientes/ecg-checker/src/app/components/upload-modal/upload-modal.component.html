@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Subir archivo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Selecciona una opción:</ion-label>
+    <ion-select [(ngModel)]="selectedOption">
+      <ion-select-option value="ecg-storage">Seleccionar de ECG Storage</ion-select-option>
+      <ion-select-option value="image">Subir una imagen</ion-select-option>
+      <ion-select-option value="csv">Subir un CSV</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item *ngIf="selectedOption === 'ecg-storage'">
+    <ion-label>Selecciona un segmento:</ion-label>
+    <ion-select (ionChange)="handleECGStorageSelect($event)">
+      <ion-select-option *ngFor="let trace of ecgTraces" [value]="trace">{{ trace._id }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+
+  <ion-item *ngIf="selectedOption === 'image'">
+    <ion-label>Selecciona una imagen:</ion-label>
+    <ion-input type="file" (change)="handleImageUpload($event)" accept="image/*"></ion-input>
+  </ion-item>
+
+  <ion-item *ngIf="selectedOption === 'csv'">
+    <ion-label>Selecciona un CSV:</ion-label>
+    <ion-input type="file" (change)="fileChangeEvent($event)" accept=".csv"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" (click)="uploadFile()">Enviar y procesar</ion-button>
+</ion-content>

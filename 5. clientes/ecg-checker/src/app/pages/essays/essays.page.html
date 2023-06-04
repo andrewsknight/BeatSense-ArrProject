@@ -1,0 +1,21 @@
+<app-app-header>Ensayos</app-app-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Ensayos</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list>
+    <ion-item *ngFor="let result of results">
+      <ion-label>Fuente: {{result.fuente }} | {{ result.fecha_creacion  }}</ion-label>
+      <ion-icon name="arrow-forward" slot="end" (click)="viewResultDetails(result)"></ion-icon>
+    </ion-item>
+  </ion-list>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="presentUploadModal()">
+      <ion-icon name="cloud-upload"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

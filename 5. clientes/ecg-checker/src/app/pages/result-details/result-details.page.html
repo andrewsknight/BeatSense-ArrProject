@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Resultado de ensayo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let heartbeat of result.resultados.heartbeats; let i = index">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <!-- Aquí puedes agregar la gráfica -->
+            <div class="chart-placeholder">
+              <!--<canvas baseChart class="chart"
+                      [data]="lineChartData"
+                      [options]="lineChartOptions"
+                      [type]="lineChartType"></canvas>-->
+              <canvas #chartCanvas class="chart"></canvas>
+            </div>
+          </ion-col>
+          <ion-col size="6" class="ion-align-items-center">
+            <div class="ion-text-center">
+              <p><strong>Etiqueta:</strong> {{ heartbeat.label }}</p>
+              <p><strong>Puntaje:</strong> {{ heartbeat.score }}</p>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+</ion-content>

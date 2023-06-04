@@ -1,0 +1,38 @@
+
+<!-- Añadimos el header, con el el titulo y un boton para regresar atras -->
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>ecg-detail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">ecg-detail</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <!-- Aquí puedes agregar la visualización gráfica del trazo de ECG -->
+  <ion-card>
+    <ion-card-header>
+      Line Chart
+    </ion-card-header>
+    <ion-card-content>
+      <div style="width: 100%; height: 400px;">
+        <canvas baseChart class="chart"
+                [data]="lineChartData"
+                [options]="lineChartOptions"
+                [type]="lineChartType"></canvas>
+      </div>
+
+    </ion-card-content>
+  </ion-card>
+  <div *ngIf="trace">
+    <h2>Detalles del trazo</h2>
+    <p>Fecha de creación: {{ trace.fecha_creacion | date }}</p>
+    <p>Imagen URL: {{ trace.imagen_url }}</p>
+  </div>
+</ion-content>
